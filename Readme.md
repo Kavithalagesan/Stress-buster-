@@ -1,2 +1,1 @@
 **Sample project**
-name : aaa
