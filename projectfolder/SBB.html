@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stress Buster</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <center>
+        <h1>Stress Buster</h1>
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjOO7qU-nGEU5Vym5vT7rxycVffIekQCaXTk2Cny4FpJwwFe_DHatUwKZnMalS3w1dBaMhwIKRN16EROPM27zj4w09qUPqFT2mHuiKeCkZnOhmBvFbRAAL88cyR7AdxAVB3ed8QvwV7ggBNOJq_EEf5h8pezxXbgllmziBDPFkUr9meMan-U-jYuL2reAQ" width="200px" height="200px"></img>
+        <ol>
+            <li>DO YOU FREQUENTLY TRY TO DO EVERYTHING YOURSELF?</li>
+            <button onclick="checkAnswer(true)">Yes</button>
+            <button onclick="checkAnswer(false)">No</button>
+
+            <li>DO YOU FREQUENTLY FAIL TO SEE THE HUMOR IN SITUATIONS WHERE OTHERS FIND FUNNY?</li>
+            <button onclick="checkAnswer(true)">Yes</button>
+            <button onclick="checkAnswer(false)">No</button>
+
+            <li>DO YOU EASILY GET IRRITATED?</li>
+            <button onclick="checkAnswer(true)">Yes</button>
+            <button onclick="checkAnswer(false)">No</button>
+
+            <li>DO YOU FREQUENTLY COMPLAIN THAT YOU'RE DISORGANIZED?</li>
+            <button onclick="checkAnswer(true)">Yes</button>
+            <button onclick="checkAnswer(false)">No</button>
+
+            <li>DO YOU TEND TO KEEP EVERYTHING INSIDE?</li>
+            <button onclick="checkAnswer(true)">Yes</button>
+            <button onclick="checkAnswer(false)">No</button>
+            <p>Score: <span id="score">0</span></p>
+        </ol>
+
+        <!-- Placeholder for images -->
+        <div id="imageContainer" style="display:none;">
+            <img id="image1" src="https://blogger.googleusercontent.com/img/a/AVvXsEgs3nhOspji2VmaInd8K4tWpjTPsCXHaAwprJA5_2R8DgMGpfeW_z766b7-7qghwEdOPFBj-ImtAg7ODSPxHz0RZrdtDUWedRT7nZwLfkqveAqJqo69bwYGKKw1HSCD9TDbatLAtdO1RBHQnFTBFAV3arKw6gpAnjBvvdLCDuaWq6i7areSmfV62JfSsIw" width="300px" height="300px"
+                style="display:none;">
+            <img id="image2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrxWo3IaYPrun_DISo0shOWHhjwuGvRDtDNA&s" width="300px" height="300px"
+                style="display:none;">
+            <img id="image3" src="https://blogger.googleusercontent.com/img/a/AVvXsEg689Via6IQW7RXx5FGUbKDk-OTcsuieiYG_Funtbl7Md-8UtR_t9UZ7ZD7vl8Dz8GOo_JFMCxBGUo_0L5IdEzzqNhaIsJcIel7x8Ci_qthEagOZacriGIIxXKsELbRi2qBtUcSugO_9mcX7ld35U-fesRVEtvOp7UOke9KukCAjsYuAZs-fhECcjcCQKw" width="300px" height="300px"
+                style="display:none;">
+        </div>
+
+        <script>
+            let score = 0;
+
+            function checkAnswer(answer) {
+                if (answer === true) {
+                    score++;
+                }
+                document.getElementById('score').textContent = score;
+            }
+
+            function showimg() {
+                let imageContainer = document.getElementById('imageContainer');
+                imageContainer.style.display = 'block';
+
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById('image' + i).style.display = 'none';
+                }
+
+                if (score >= 0 && score <= 1) {
+                    document.getElementById('image1').style.display = 'block';
+                } else if (score >= 2 && score <= 3) {
+                    document.getElementById('image2').style.display = 'block';
+                } else if (score >= 4 && score <= 5) {
+                    document.getElementById('image3').style.display = 'block';
+                }
+            }
+
+            function finishGame() {
+                let newPageContent = "<html><head><title>Stress Buster Result</title></head><body>";
+                if (score >= 0 && score <= 1) {
+                    newPageContent += "<img src='" + document.getElementById('image1').src + "' width='300px' height='300px'>";
+                } else if (score >= 2 && score <= 3) {
+                    newPageContent += "<img src='" + document.getElementById('image2').src + "' width='300px' height='300px'>";
+                } else if (score >= 4 && score <= 5) {
+                    newPageContent += "<img src='" + document.getElementById('image3').src + "' width='300px' height='300px'>";
+                }
+                newPageContent += "</body></html>";
+                
+                let newWindow = window.open();
+                newWindow.document.open();
+                newWindow.document.write(newPageContent);
+                newWindow.document.close();
+            }
+            
+
+        </script>
+
+        <button onclick="finishGame()">Finish</button>
+
+    </center>
+</body>
+</html>
